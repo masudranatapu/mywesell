@@ -248,7 +248,7 @@
                         <div class="col">
                             <p class="small text-muted mb-0">
                                 <span class="fe fe-arrow-down fe-12"></span>
-                                <span class="fs-14 text-light">{{ __('Products Validation') }}</span>
+                                <span class="fs-14 text-light">{{ __('Package Validation') }}</span>
                             </p>
                             <h5 class="text-white">
                                 {{ date('Y-M-d', strtotime(Auth::user()->package_validate)) }}
