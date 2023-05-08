@@ -16,6 +16,11 @@ Route::group(['prefix' => 'seller', 'middleware' => ['seller', 'verified', 'user
 Route::group(['namespace' => 'App\Http\Controllers\Seller', 'prefix' => 'seller', 'middleware' => ['seller', 'verified', 'user'], 'as' => 'seller.'], function () {
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/dashboard', 'index')->name('dashboard');
+        Route::get('packages-list', 'packages')->name('pack');
+        Route::get('packages-upgrade', 'packagesUpgrade')->name('pack.upgrade');
+        Route::get('bank/payment/{id}', 'bankPayment')->name('bank.payment');
+        Route::post('paypal/payment', 'processTransaction')->name('paypal.post');
+        Route::post('bank/payment/post/{id}', 'bankPaymentPost')->name('bank.payment.post');
     });
     
     // Product 

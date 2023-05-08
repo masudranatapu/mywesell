@@ -75,6 +75,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
         Route::get('/categories/destroy/{id}', 'destroy')->name('categories.destroy');
         Route::post('/categories/featured', 'updateFeatured')->name('categories.featured');
     });
+
+    Route::get('package-transactions', [AdminController::class, 'packageTransactons'])->name('admin.package.transactions');
+    Route::get('package-transactions/edit/{id}', [AdminController::class, 'packageTransactonsEdit'])->name('admin.package.transactions.edit');
+    Route::post('package-transactions/acpect/{id}', [AdminController::class, 'packageTransactonsAcpect'])->name('admin.package.transactions.acpect');
     
     // Brand
     Route::resource('brands', BrandController::class);
@@ -206,7 +210,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
         Route::get('/google-recaptcha', 'google_recaptcha')->name('google_recaptcha.index');
         Route::get('/google-map', 'google_map')->name('google-map.index');
         Route::get('/google-firebase', 'google_firebase')->name('google-firebase.index');
-
+        Route::post('/bank-info/update/{id}', 'bankInfo')->name('payment_method.bank.info');
         //Facebook Settings
         Route::get('/facebook-chat', 'facebook_chat')->name('facebook_chat.index');
         Route::post('/facebook_chat', 'facebook_chat_update')->name('facebook_chat.update');

@@ -62,9 +62,9 @@ class ShopController extends Controller
     public function store(Request $request)
     {
         $packages = MySellerPackage::where('id', $request->my_seller_package_id)->first();
-        $package_validate = Carbon::now()->addMonth($packages->subscription_days);
-        $available_days_validate = Carbon::now()->addDays($packages->available_days);
-        $withdraw_days = Carbon::now()->addDay($packages->withdraw_days);
+        // $package_validate = Carbon::now()->addMonth($packages->subscription_days);
+        // $available_days_validate = Carbon::now()->addDays($packages->available_days);
+        // $withdraw_days = Carbon::now()->addDay($packages->withdraw_days);
         
         $user = null;
 
@@ -78,11 +78,11 @@ class ShopController extends Controller
                 $user->name = $request->name;
                 $user->email = $request->email;
                 $user->customer_package_id = $request->my_seller_package_id;
-                $user->package_validate = $package_validate;
-                $user->available_days_validate = $available_days_validate;
-                $user->withdraw_days_validate = $withdraw_days;
-                $user->total_post = $packages->post_limit;
-                $user->total_storage = $packages->storage_limit*1024;
+                // $user->package_validate = $package_validate;
+                // $user->available_days_validate = $available_days_validate;
+                // $user->withdraw_days_validate = $withdraw_days;
+                // $user->total_post = $packages->post_limit;
+                // $user->total_storage = $packages->storage_limit*1024;
                 $user->user_type = "seller";
                 $user->password = Hash::make($request->password);
                 $user->save();

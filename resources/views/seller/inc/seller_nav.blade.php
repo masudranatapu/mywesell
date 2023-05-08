@@ -32,7 +32,7 @@
                 <div class="d-flex justify-content-around align-items-center align-items-stretch ml-3">
                     <div class="aiz-topbar-item">
                         <div class="d-flex align-items-center">
-                            <a class="btn btn-warning" href="" title="Upgrade Your Plan">
+                            <a class="btn btn-warning" href="{{ route('seller.pack') }}" title="Upgrade Your Plan">
                                 {{ __('Upgrade Your plan') }}
                             </a>
                         </div>

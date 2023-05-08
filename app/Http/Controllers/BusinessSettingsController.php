@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\BusinessSetting;
 use Artisan;
 use CoreComponentRepository;
+use DB;
+use Carbon\Carbon;
 
 class BusinessSettingsController extends Controller
 {
@@ -101,7 +103,23 @@ class BusinessSettingsController extends Controller
     {
         CoreComponentRepository::instantiateShopRepository();
         CoreComponentRepository::initializeCache();
-        return view('backend.setup_configurations.payment_method');
+        $bank_info = DB::table('bank_info')->first();
+        // dd($bank_info);
+        return view('backend.setup_configurations.payment_method', compact('bank_info'));
+    }
+
+    public function bankInfo(Request $request, $id)
+    {
+        // dd($id);
+        DB::table('bank_info')->where('id', $id)->update([
+            'bank_account_number' => $request->bank_account_number,
+            'bank_account_name' => $request->bank_account_name,
+            'bank_branch_name' => $request->bank_branch_name,
+        ]);
+
+        flash("Bank Info updated successfully")->success();
+        return redirect()->back();
+        
     }
 
     public function file_system(Request $request)

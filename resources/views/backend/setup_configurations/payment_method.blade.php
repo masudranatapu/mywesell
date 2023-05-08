@@ -793,7 +793,46 @@
                 </div>
             </div>
         </div>
-
+        
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0 h6 ">Bank Information</h5>
+                </div>
+                <div class="card-body">
+                    <form class="form-horizontal" action="{{ route('payment_method.bank.info', $bank_info->id) }}" method="POST">
+                        @csrf
+                        <div class="form-group row">
+                            <div class="col-md-4">
+                                <label class="col-from-label">Account Number</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="number" class="form-control" name="bank_account_number" value="{{ $bank_info->bank_account_number }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-4">
+                                <label class="col-from-label">Account Name</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="bank_account_name" value="{{ $bank_info->bank_account_name }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-4">
+                                <label class="col-from-label">Branch Name</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="bank_branch_name" value="{{ $bank_info->bank_branch_name }}">
+                            </div>
+                        </div>
+                        <div class="form-group mb-0 text-right">
+                            <button type="submit" class="btn btn-sm btn-primary">{{translate('Save')}}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
     @endsection

@@ -489,6 +489,11 @@
                                     <span class="aiz-side-nav-text">{{translate('Seller Package')}}</span>
                                 </a>
                             </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="{{route('admin.package.transactions')}}" class="aiz-side-nav-link {{ areActiveRoutes(['admin.package.transactions', 'madmin.package.transactions.edit'])}}" >
+                                    <span class="aiz-side-nav-text">Seller Package Transactons</span>
+                                </a>
+                            </li>
                             @if (addon_is_activated('seller_subscription'))
                                 @can('view_all_seller_packages')
                                     <li class="aiz-side-nav-item">

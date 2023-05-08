@@ -7,7 +7,11 @@ use App\Models\Category;
 use App\Models\Product;
 use Artisan;
 use Cache;
+use DB;
 use CoreComponentRepository;
+use Carbon\Carbon;
+use App\Models\User;
+use App\Models\MySellerPackage;
 
 class AdminController extends Controller
 {
@@ -55,5 +59,59 @@ class AdminController extends Controller
         Artisan::call('config:clear');
         flash(translate('Cache cleared successfully'))->success();
         return back();
+    }
+
+    public function packageTransactons()
+    {
+        $package_transactions = DB::table('package_transactions')->get();
+        // dd($package_transactions);
+        return view('backend.sellers.package_transactions.index', compact('package_transactions'));
+    }
+
+    public function packageTransactonsEdit($id)
+    {
+        $transactions = DB::table('package_transactions')->where('id', $id)->first();
+        // dd($transactions);
+        return view('backend.sellers.package_transactions.edit', compact('transactions'));
+    }
+    public function packageTransactonsAcpect(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required',
+        ]);
+        
+        $transactions = DB::table('package_transactions')->where('id', $id)->first();
+
+        $packages = MySellerPackage::where('id', $transactions->package_id)->first();
+        
+        $package_validate = Carbon::now()->addMonth($packages->subscription_days);
+        $available_days_validate = Carbon::now()->addDays($packages->available_days);
+        $withdraw_days = Carbon::now()->addDay($packages->withdraw_days);
+        // dd($withdraw_days);
+
+        User::where('id', $transactions->user_id)->update([
+            'package_validate' => $package_validate,
+            'available_days_validate' => $available_days_validate,
+            'withdraw_days_validate' => $withdraw_days,
+            'total_post' => $packages->post_limit,
+            'total_storage' => $packages->storage_limit*1024,
+        ]);
+
+        if($request->status == 1) {
+            $payment_status = "Paid";
+        }else {
+            $payment_status = "Unpaid";
+        }
+
+        DB::table('package_transactions')->where('id', $id)->update([
+            'status' => $request->status,
+            'payment_status' => $payment_status,
+        ]);
+
+        
+        flash('Package status change successfully done.')->success();
+
+        return redirect()->route('admin.package.transactions');
+
     }
 }
