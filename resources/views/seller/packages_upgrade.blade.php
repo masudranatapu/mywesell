@@ -44,7 +44,7 @@
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title">Paypal Payment</h5>
-                            <form action="{{ route('paypal.post') }}" method="POST">
+                            <form action="{{ route('seller.paypal.post') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="ad_id" value="{{ $packages->id }}">
                                 <button type="submit" class="btn btn-primary">Pay Now</button>

@@ -35,17 +35,17 @@
         "myfatoorah/laravel-package": "^2.0",
         "niklasravnsborg/laravel-pdf": "^4.0",
         "osenco/mpesa": "^1.20",
-        "paypal/paypal-checkout-sdk": "dev-master",
         "predis/predis": "^1.1",
         "razorpay/razorpay": "^2.0",
+        "rmccue/requests": "^1.8",
         "sebacarrasco93/laravel-payku": "^1.0",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/db-dumper": "2.21.1",
         "spatie/laravel-permission": "^5.5",
+        "srmklive/paypal": "~3.0",
         "stripe/stripe-php": "^7.95",
         "twilio/sdk": "^6.1",
-        "unicodeveloper/laravel-paystack": "^1.0",
-        "rmccue/requests": "^1.8"
+        "unicodeveloper/laravel-paystack": "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
