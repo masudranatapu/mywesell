@@ -41,12 +41,12 @@
                     <div class="col-md-4">
                         <img src="{{ asset('public/payments/paypal.jpg') }}" height="200" class="card-img" alt="...">
                     </div>
-                    <div class="col-md-8">
+                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title">Paypal Payment</h5>
                             <form action="{{ route('seller.paypal.post') }}" method="POST">
                                 @csrf
-                                <input type="hidden" name="ad_id" value="{{ $packages->id }}">
+                                <input type="hidden" name="package_id" value="{{ $packages->id }}">
                                 <button type="submit" class="btn btn-primary">Pay Now</button>
                             </form>
                         </div>
