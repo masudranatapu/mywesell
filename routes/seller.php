@@ -20,11 +20,14 @@ Route::group(['namespace' => 'App\Http\Controllers\Seller', 'prefix' => 'seller'
         Route::get('packages-upgrade', 'packagesUpgrade')->name('pack.upgrade');
         Route::get('bank/payment/{id}', 'bankPayment')->name('bank.payment');
         Route::post('bank/payment/post/{id}', 'bankPaymentPost')->name('bank.payment.post');
+    });
+
+    Route::controller(PayPalController::class)->group(function () {
         Route::post('paypal/payment', 'processTransaction')->name('paypal.post');
         Route::get('success-transaction', 'successTransaction')->name('paypal.successTransaction');
         Route::get('cancel-transaction', 'cancelTransaction')->name('paypal.cancelTransaction');
-
     });
+    
     
     // Product 
     Route::controller(ProductController::class)->group(function () {

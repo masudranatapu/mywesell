@@ -182,6 +182,8 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+        Srmklive\PayPal\Providers\PayPalServiceProvider::class,
+
         /*
          * Package Service Providers...
          */
@@ -253,7 +255,8 @@ return [
         'Str' => Illuminate\Support\Str::class,
         'Rave' => KingFlamez\Rave\Facades\Rave::class,
         'Image' => Intervention\Image\Facades\Image::class,
-        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+        'PayPal' => Srmklive\PayPal\Facades\PayPal::class,
     ],
 
 ];
