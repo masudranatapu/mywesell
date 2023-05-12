@@ -25,7 +25,7 @@ class DashboardController extends Controller
                                 ->where('delivery_status', '=', 'delivered')
                                 ->select(DB::raw("sum(grand_total) as total, DATE_FORMAT(created_at, '%d %b') as date"))
                                 ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
-                                ->get()->pluck('total', 'date');  
+                                ->get()->pluck('total', 'date');
 
         return view('seller.dashboard', $data);
     }
@@ -66,9 +66,9 @@ class DashboardController extends Controller
             $payment_proved_image_name = $slug.'-'.uniqid().'.'.$payment_proved_image->getClientOriginalExtension();
             $upload_path = 'public/media/proved_image/';
             $payment_proved_image->move($upload_path, $payment_proved_image_name);
-    
+
             $provedimage = $upload_path.$payment_proved_image_name;
-    
+
         }else {
             $provedimage = null;
         }
@@ -97,14 +97,14 @@ class DashboardController extends Controller
             'status' => 0,
             'created_at' => Carbon::now(),
         ]);
-        
+
         User::where('id', Auth::user()->id)->update([
             'customer_package_id' => $request->package_id,
         ]);
-        
+
         flash("Bank payment successfully done. Please wait for admin approval")->success();
 
         return redirect()->route('seller.dashboard');
     }
-    
+
 }
