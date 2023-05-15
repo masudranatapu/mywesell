@@ -17,6 +17,11 @@
                     Refund policy
                 </a>
             </li>
+            <li class="site-footer__linklist-item" >
+                <a href="https://rodh-it.com/">
+                    Development by RODH-IT
+                </a>
+            </li>
         </ul>
     </div>
 </footer>
