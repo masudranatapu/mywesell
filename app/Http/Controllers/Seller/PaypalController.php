@@ -141,11 +141,22 @@ class PaypalController extends Controller
             'created_at' => Carbon::now(),
         ]);
 
+        $packages = MySellerPackage::where('id', $package_id)->first();
+        
+        $package_validate = Carbon::now()->addMonth($packages->subscription_days);
+        $available_days_validate = Carbon::now()->addDays($packages->available_days);
+        $withdraw_days = Carbon::now()->addDay($packages->withdraw_days);
+        // dd($withdraw_days);
+
         User::where('id', Auth::user()->id)->update([
             'customer_package_id' => $package_id,
+            'package_validate' => $package_validate,
+            'available_days_validate' => $available_days_validate,
+            'withdraw_days_validate' => $withdraw_days,
+            'total_post' => $packages->post_limit,
+            'total_storage' => $packages->storage_limit*1024,
         ]);
-
-
+        
     }
 
 }
